@@ -25,5 +25,15 @@ RM-GO/
 ```bash
 git clone https://github.com/Rayane-94/CRM-GO.git
 cd CRM-GO
+```
+Option 1 lancement normal: 
+```bash
 go run main.go
-go test
+```
+Cette commande vous permet de vous deplacer manuellement dans l'application
+
+Option 2 lancement avec un flag :
+```
+go run main.go --ajouter
+```
+Cette commande permet d’ajouter un utilisateur sans passer par le menu interactif.
