@@ -24,7 +24,7 @@ func addContact() {
 	email = strings.TrimSpace(email)
 
 	contacts = append(contacts, Contact{Nom: nom, Email: email})
-	fmt.Printf("✅ Contact ajouté: %s <%s>\n", nom, email)
+	fmt.Printf("Contact ajouté: %s <%s>\n", nom, email)
 }
 
 func menuRef() {
@@ -47,7 +47,7 @@ func menuRef() {
 			} else {
 				//afficher contact
 				for i, v := range contacts {
-					fmt.Printf("✅ afficher les contacts: %s <%s>\n", i+1, v.Nom, v.Email)
+					fmt.Printf("afficher les contacts: %s <%s>\n", i+1, v.Nom, v.Email)
 				}
 			}
 		case 3:
