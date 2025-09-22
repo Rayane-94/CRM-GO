@@ -1,13 +1,15 @@
 package main
 
-import "bufio"
-import "os"
-import "strings"
-import "fmt"
-import "flag"
+import (
+	"bufio"
+	"flag"
+	"fmt"
+	"os"
+	"strings"
+)
 
 type Contact struct {
-	Nom string
+	Nom   string
 	Email string
 }
 
@@ -47,7 +49,7 @@ func menuRef() {
 			} else {
 				//afficher contact
 				for i, v := range contacts {
-					fmt.Printf("afficher les contacts: %s <%s>\n", i+1, v.Nom, v.Email)
+					fmt.Printf("Contact %d: %s <%s>\n", i+1, v.Nom, v.Email)
 				}
 			}
 		case 3:
