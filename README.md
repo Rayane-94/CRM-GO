@@ -13,11 +13,29 @@ Il permet d’ajouter, modifier et tester des fonctionnalités CRM via des tests
 
 ## Architecture
 
-RM-GO/
-│
-├─ main.go # Fichier principale
-├─ go.mod # Fichier de module Go pour la gestion des dépendances a ne pas toucher 
-└─ test.go # Contient tous les tests unitaires
+CRM-GO/
+├── cmd/ # Commandes CLI (Cobra)
+│ ├── root.go # Commande racine + init config/store
+│ ├── add.go # add
+│ ├── list.go # list
+│ ├── update.go # update --id ...
+│ └── delete.go # delete --id ...
+├── internal/
+│ ├── domain/
+│ │ └── contact.go # Entité Contact
+│ ├── app/
+│ │ └── service.go # Logique métier (ContactService)
+│ └── store/ # Interface Storer + implémentations
+│ ├── storer.go
+│ ├── memory/ # Stockage mémoire (tests)
+│ ├── json/ # Stockage fichier JSON
+│ └── gorm/ # Stockage GORM/SQLite
+├── config.yaml # Configuration (type de stockage)
+├── go.mod / go.sum
+└── main.go # Entrée du programme
+
+Exemple de sortie lors d'n ajout update et delete à partir des flags
+<img width="959" height="385" alt="image" src="https://github.com/user-attachments/assets/2d35aeed-8ae0-4fea-8bd1-f5736ab7da04" />
 
 ## Fonctionnement
 
@@ -26,14 +44,22 @@ RM-GO/
 git clone https://github.com/Rayane-94/CRM-GO.git
 cd CRM-GO
 ```
-Option 1 lancement normal: 
+Lancement go run afin d'ajouter un contact: 
 ```bash
-go run main.go
+go run . add --first ... --last ... --email ... --phone ... --company "..." --notes "..."
 ```
-Cette commande vous permet de vous deplacer manuellement dans l'application
 
-Option 2 lancement avec un flag :
+on peut supprimer on contact à partir de l'id: 
+```bash
+go run . delete --id 1
 ```
-go run main.go --ajouter
+
+De meme pour l'update
+
+```bash
+go run . update --id 1 --first Jean
 ```
-Cette commande permet d’ajouter un utilisateur sans passer par le menu interactif.
+
+
+
+
